@@ -1,6 +1,5 @@
 <?php
 require("connect-db.php");      // include("connect-db.php");
-require("friend-db.php");
 require("login-user-db.php");
 
 
@@ -21,12 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
           header('Location: /databases/simpleform.php');
           exit();
-        }
-        else
-        {
-          //header('Location: /databases/loginIncorrect.php');
-          //exit();
-          echo "Login failed. Please try again.";
         }
       }
 
@@ -51,7 +44,7 @@ function authenticate()
          header("Location: ".$mainpage);
       }
       else       
-         echo "<span class='msg'>Username and password do not match our record</span> <br/>";
+         echo "<span class='msg'>Username and password do not match our record.</span> <br/>";
    }	
 }
 $mainpage = "simpleform.php";   
