@@ -1,7 +1,6 @@
 <?php
-require("connect-db.php");      // include("connect-db.php");
+require("connect-db.php"); 
 require("login-user-db.php");
-
 
 $user = null;
 ?>
@@ -18,13 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       {
         if($user['login'])
         {
-          header('Location: /databases/simpleform.php');
+          header('Location: /databases/homepage.php');
           exit();
         }
       }
 
   }
-  if (!empty($_POST['btnAction']) && $_POST['btnAction'] =='CreateUserPage') 
+  if (!empty($_POST['btnAction']) && $_POST['btnAction'] =='New user? Create new account') 
   {
     header('Location: /databases/createuserform.php');
   }
@@ -47,7 +46,7 @@ function authenticate()
          echo "<span class='msg'>Username and password do not match our record.</span> <br/>";
    }	
 }
-$mainpage = "simpleform.php";   
+$mainpage = "homepage.php";   
 authenticate();
 
 ?>
@@ -70,9 +69,9 @@ authenticate();
 
 
 <div class="container">
-  <h1>Login Page</h1>  
+  <h1>Login</h1>  
 
-<form name="mainForm" action="loginForm.php" method="post">   
+<form name="mainForm" action="login.php" method="post">   
   <div class="row mb-3 mx-3">
     Username:
     <input type="text" class="form-control" name="username" 
@@ -84,26 +83,14 @@ authenticate();
     />            
   </div> 
 
-  <!-- <div class="row mb-3 mx-3"> -->
-  <div>
-    <input type="submit" value="Login" name="btnAction" class="btn btn-dark" 
-           title="Login into to UVA course review app" />            
-        
-  </div> 
-    
-  <br>
-  <div>
-    <input type="submit" value="CreateUserPage" name="btnAction" class="btn btn-dark" 
-           title="Create user" />            
-        
-  </div> 
+  <input type="submit" value="Login" name="btnAction" class="btn btn-primary" 
+          title="Login into to UVA course review app" />            
+      
 
+  <input type="submit" value="New user? Create new account" name="btnAction" class="btn btn-secondary" 
+          title="Create user page" />            
+        
 </form>   
-
-
-
-
-
 
 </div>    
 <br>

@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $result = addUser($_POST['username'], $_POST['password'], $_POST['firstName'], $_POST['lastName'], $_POST['major'], $_POST['gradYear']);  
     if ($result)
     {
-      header('Location: /databases/loginform.php');
+      header('Location: /databases/login.php');
       exit();
     }
   }
@@ -70,7 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     />            
   </div> 
 
-  <!-- <div class="row mb-3 mx-3"> -->
   <div>
     <input type="submit" value="Create User" name="btnAction" class="btn btn-dark" 
            title="Login into to UVA course review app" />            
@@ -78,10 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   </div> 
 
 </form>   
-
-
-
-
 
 
 </div>    
