@@ -17,14 +17,13 @@ function addUser($username, $password, $firstName, $lastName, $major, $gradYear)
     }
     catch (PDOException $e) 
     {
-        echo $e->getMessage();
         $result = FALSE;
-        // if there is a specific SQL-related error message
-        //    echo "generic message (don't reveal SQL-specific message)";
-
-        // if (str_contains($e->getMessage(), "Duplicate"))
-		//    echo "Failed to add a friend <br/>";
-
+        if (str_contains($e->getMessage(), 'Duplicate entry \'student\' for key \'PRIMARY\''))
+        echo "User create failed. Username already taken.<br/>";
+        else if (str_contains($e->getMessage(), "CONSTRAINT_1"))
+		    echo "User create failed. Grad Year must be between 2023 and 2026 <br/>";
+        else 
+            echo "User create failed.<br/>";
         //if ($statement->rowCount() == 0)
         //    echo "Failed to add a friend <br/>";
     }
