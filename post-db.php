@@ -36,4 +36,13 @@ function getAllCourses() {
     return $result;
 }
 
+function getAllProfs() {
+    global $db;
+    $query = "SELECT * FROM Professor";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
 ?>

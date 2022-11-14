@@ -1,5 +1,5 @@
 <?php
-function LoginUser($username, $password)
+function createPost($username, $password)
 {
     global $db; 
     $query = "SELECT * FROM User WHERE username=:username AND password=:password";
@@ -20,7 +20,6 @@ function LoginUser($username, $password)
         {
             $result = $statement->fetch(); 
             $result = array_merge($result, array("login" => TRUE));
-            $_SESSION['login_ID']=$result['username'];
         }
         $statement->closeCursor();
     } 

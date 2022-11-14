@@ -1,8 +1,10 @@
 <?php
 require("connect-db.php"); 
 require("login-user-db.php");
+//include("session.php");
 
 $user = null;
+session_start(); 
 ?>
 
 <?php
@@ -69,6 +71,7 @@ authenticate();
 
 
 <div class="container">
+  <?php $_SESSION["login_ID"]?>
   <h1>Login</h1>  
 
 <form name="mainForm" action="login.php" method="post">   

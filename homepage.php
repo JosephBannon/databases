@@ -1,9 +1,12 @@
 <?php
 require("connect-db.php");
 require("post-db.php");
+include("session.php");
 
 $list_of_posts = getAllPosts();
 $list_of_courses = getAllCourses();
+
+session_start();
 ?>
 
 <?php
@@ -22,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <!DOCTYPE html>
 <html>
+  
 <head>
   <meta charset="UTF-8">  
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
 </head>
 
+<text> d <?php echo $_SESSION["login_ID"]?> <text>
 <body>
-
 <div class="container">
   <div class="row">
     <h1>Posts Feed</h1>  
