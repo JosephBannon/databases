@@ -6,7 +6,6 @@ include("session.php");
 $list_of_posts = getAllPosts();
 $list_of_courses = getAllCourses();
 
-session_start();
 ?>
 
 <?php

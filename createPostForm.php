@@ -2,11 +2,12 @@
 require("connect-db.php"); 
 require("create-post-db.php");
 require("post-db.php");
+include("session.php");
+
 
 $list_of_profs = getAllProfs();
 $list_of_courses = getAllCourses();
 
-session_start();
 ?>
 
 <?php
@@ -15,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
   if (!empty($_POST['btnAction']) && $_POST['btnAction'] =='CreatePost') 
   {
-    createPost($_POST['title'], $_POST['content'], $_POST['professor'], $_POST['course'] $_POST['rating']);
+    createPost($_POST['title'], $_POST['content'], $_POST['prof'], $_POST['course'], $_POST['rating']);
   }
 
   
@@ -41,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <body>
 
+<text> d <?php echo $_SESSION["login_ID"]?> <text>
 
 <div class="container">
   <?php $_SESSION["login_ID"]?>
@@ -57,8 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       <textarea name="content" rows="6" cols="89" wrap="soft"> </textarea>
     </div> 
     <div class="col-4">
-      Profesor:
-        <select class="form-select" name="profesor">
+      Professor:
+        <select class="form-select" name="prof">
           <option value="-1">No Professor Selected...</option>
           <?php foreach($list_of_profs as $prof): ?>
             <option value="<?= $prof['profID']; ?>"> <?= $prof['firstName']; ?> <?= $prof['lastName']; ?> </option>
