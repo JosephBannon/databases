@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   if (!empty($_POST['btnAction']) && $_POST['btnAction'] =='CreatePost') 
   {
     createPost($_POST['title'], $_POST['content'], $_POST['prof'], $_POST['course'], $_POST['rating']);
+    header("Location: /databases/homepage.php");
+    exit();
   }
 
   
