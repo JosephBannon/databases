@@ -20,6 +20,7 @@ function LoginUser($username, $password)
         {
             $result = $statement->fetch(); 
             $result = array_merge($result, array("login" => TRUE));
+            $_SESSION['login_ID']=$result['username'];
         }
         $statement->closeCursor();
     } 
