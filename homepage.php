@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
 </head>
 
-<text> d <?php echo $_SESSION["login_ID"]?> <text>
+<text> <?php echo $_SESSION["login_ID"]?> <text>
 <body>
 <div class="container">
   <div class="row">
@@ -44,7 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <div class="col-8">
       <?php foreach($list_of_posts as $post): ?>
         <h3><?= $post['postTitle']; ?></h3>
-        <h6><?= $post['courseName']; ?>, <?= $post['profFirstName'];  ?> <?= $post['profLastName']; ?></h6>
+        <h6><?= $post['courseName']==null ? "No affiliated course" : $post['courseName']; ?>, 
+          <?= $post['profFirstName']==null ? "No affiliated professor" : $post['profFirstName'];  ?> <?= $post['profLastName']==null ? "" : $post['profLastName']; ?></h6>
         <p><?= $post['postContent']; ?></p>
         <p><em> Posted by <a href=""><?= $post['username']; ?></a> at <?= $post['timePosted']; ?></em></p>
         <p><strong>Rating: <?= $post['rating']; ?>/5</strong></p>
