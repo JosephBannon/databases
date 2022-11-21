@@ -1,6 +1,7 @@
 <?php
 require("connect-db.php");
 require("post-db.php");
+require("like-db.php");
 include("session.php");
 
 $list_of_posts = getAllPosts();
@@ -19,6 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     $list_of_posts = getAllPosts();
   }
+  else if (!empty($_POST['likeButton'])) 
+  {
+    userLikePost($_SESSION["login_ID"], $_POST['likeButton']);
+    //$list_of_posts = getAllPosts();
+  }
 }
 ?>
 
@@ -33,7 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <title>Home</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
+  <link rel="stylesheet" href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+<link rel="stylesheet" href="mystyle.css">
+</link>
 </head>
+
+
 
 <text> <?php echo $_SESSION["login_ID"]?> <text>
 <body>
@@ -42,15 +54,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <h1>Posts Feed</h1>  
     <hr/>
     <div class="col-8">
-      <?php foreach($list_of_posts as $post): ?>
-        <h3><?= $post['postTitle']; ?></h3>
-        <h6><?= $post['courseName']==null ? "No affiliated course" : $post['courseName']; ?>, 
-          <?= $post['profFirstName']==null ? "No affiliated professor" : $post['profFirstName'];  ?> <?= $post['profLastName']==null ? "" : $post['profLastName']; ?></h6>
-        <p><?= $post['postContent']; ?></p>
-        <p><em> Posted by <a href=""><?= $post['username']; ?></a> at <?= $post['timePosted']; ?></em></p>
-        <p><strong>Rating: <?= $post['rating']; ?>/5</strong></p>
-        <hr/>
-      <?php endforeach; ?>
+        <?php foreach($list_of_posts as $post): ?>
+          <div class="row-8">
+            <div class="column left">
+              <h3><?= $post['postTitle']; ?></h3>
+              <h6><?= $post['courseName']==null ? "No affiliated course" : $post['courseName']; ?>, 
+                <?= $post['profFirstName']==null ? "No affiliated professor" : $post['profFirstName'];  ?> <?= $post['profLastName']==null ? "" : $post['profLastName']; ?></h6>
+              <p><?= $post['postContent']; ?></p>
+              <p><em> Posted by <a href=""><?= $post['username']; ?></a> at <?= $post['timePosted']; ?></em></p>
+              <p><strong>Rating: <?= $post['rating']; ?>/5</strong></p>
+            </div>
+            <form name="likePostForm" action="homepage.php" method="post">   
+              <div class="column right">
+                <button class="button button-like" name="likeButton" type="submit"  value= <?php echo $post[0] ?>>
+                  <i class="fa fa-heart"></i>
+                  <span>Like</span>
+                </button>
+              </div>
+            </form>   
+            <hr/>
+          </div>
+         <?php endforeach; ?>
     </div>
     <div class="col-4">
       <form name="filterForm" action="homepage.php" method="post">
@@ -72,5 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <br>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
 </body>
 </html>
