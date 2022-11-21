@@ -3,7 +3,7 @@
 function userLikePost($username,$postId) {
     global $db;
     //$username = $_SESSION["login_ID"];
-    $query1 = "SELECT * FROM `likes` WHERE username=:username AND postID=:postId)";  
+    $query1 = "SELECT * FROM `likes` WHERE `username`= :username AND `postID`= :postId";  
 
     $result1 = 1;
 
@@ -13,24 +13,23 @@ function userLikePost($username,$postId) {
     {
         $statement1 = $db->prepare($query1);
 
-        $statement1->bindValue(':postId', $postId);
         $statement1->bindValue(':username', $username);
+        $statement1->bindValue(':postId', intval($postId), \PDO::PARAM_INT);
 
 
-        //$statement1->execute();
-        // if ($statement1->rowCount() != 0)
-        // {     
-        //     $doesUserLike = TRUE;
-        //     echo $doesUserLike;
-        //     return;
-        // }
-        // $result1 = $statement1->fetch();
+        $statement1->execute();
+        if ($statement1->rowCount() != 0)
+        {     
+            $doesUserLike = TRUE;
+            return;
+        }
+        $result1 = $statement1->fetch();
 
         $statement1->closeCursor();
     } 
     catch (PDOException $e)
     {
-         var_dump($e);
+        echo $e;
     }
 
     if($doesUserLike == FALSE)
@@ -59,5 +58,35 @@ function userLikePost($username,$postId) {
     }
     return;
 }
+
+
+function getAllLikes($username) {
+    global $db;
+    //$username = $_SESSION["login_ID"];
+    $query1 = "SELECT * FROM `likes` WHERE `username`= :username";  
+
+
+    try 
+    {
+        $statement1 = $db->prepare($query1);
+
+
+
+        $statement1->execute();
+    
+        $result1 = $statement1->fetch();
+
+        $statement1->closeCursor();
+        return $result1;
+    } 
+    catch (PDOException $e)
+    {
+        echo $e;
+    }
+
+    
+    return;
+}
+
 
 ?>

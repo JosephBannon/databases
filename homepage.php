@@ -6,6 +6,8 @@ include("session.php");
 
 $list_of_posts = getAllPosts();
 $list_of_courses = getAllCourses();
+$list_of_likes = getAllLikes($_SESSION["login_ID"]);
+
 
 ?>
 
