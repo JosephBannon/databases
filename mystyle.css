@@ -1,6 +1,6 @@
-.button-like {
+button-liked {
   border: 2px solid #8a8a8a;
-  background-color: transparent;
+  background-color: red;
   text-decoration: none;
   padding: 1rem;
   position: relative;
@@ -12,60 +12,30 @@
   transition: all ease 0.4s;
 }
 
-.button-like span {
+button-liked span {
   margin-left: 0.5rem;
 }
 
-.button-like .fa,
-.button-like span {
+button-liked .fa,
+button-liked span {
   transition: all ease 0.4s;
 }
 
-.button-like:focus {
-  background-color: transparent;
+button-liked:focus {
+  color: #fefefe;
 }
 
-.button-like:focus .fa,
-.button-like:focus span {
-  color: #8a8a8a;
+button-liked:focus .fa,
+button-liked:focus span {
+  color: #fefefe;
 }
 
-.button-like:hover {
-  border-color: #cc4b37;
-  background-color: transparent;
-}
-
-.button-like:hover .fa,
-.button-like:hover span {
-  color: #cc4b37;
-}
-
-.liked {
+button-liked:hover {
   background-color: #cc4b37;
   border-color: #cc4b37;
 }
 
-.liked .fa,
-.liked span {
+button-liked:hover .fa,
+button-liked:hover span {
   color: #fefefe;
 }
-
-.liked:focus {
-  background-color: #cc4b37;
-}
-
-.liked:focus .fa,
-.liked:focus span {
-  color: #fefefe;
-}
-
-.liked:hover {
-  background-color: #cc4b37;
-  border-color: #cc4b37;
-}
-
-.liked:hover .fa,
-.liked:hover span {
-  color: #fefefe;
-}
-

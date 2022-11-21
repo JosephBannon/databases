@@ -65,27 +65,32 @@ function getAllLikes($username) {
     //$username = $_SESSION["login_ID"];
     $query1 = "SELECT * FROM `likes` WHERE `username`= :username";  
 
+    $result1 = [];
+    $postIDs = [];
+
 
     try 
     {
         $statement1 = $db->prepare($query1);
-
-
+        $statement1->bindValue(':username', $username);
 
         $statement1->execute();
     
-        $result1 = $statement1->fetch();
+        $result1 = $statement1->fetchAll();
 
         $statement1->closeCursor();
-        return $result1;
+        //return $result1;
     } 
     catch (PDOException $e)
     {
         echo $e;
     }
-
+    foreach($result1 as $like){
+        echo $like[1];
+        array_push($postIDs,$like[1]);
+    }
     
-    return;
+    return $postIDs;
 }
 
 
