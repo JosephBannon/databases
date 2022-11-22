@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 
 <div class="container">
-  <?php $_SESSION["login_ID"]?>
   <h1>Create Post</h1>  
 
 <form name="createPostForm" action="createPostForm.php" method="post">   

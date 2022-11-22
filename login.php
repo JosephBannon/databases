@@ -71,7 +71,6 @@ authenticate();
 
 
 <div class="container">
-  <?php $_SESSION["login_ID"]?>
   <h1>Login</h1>  
 
 <form name="mainForm" action="login.php" method="post">   
