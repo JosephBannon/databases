@@ -48,13 +48,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 </link>
 </head>
 
-
-
 <body>
 <div class="container">
   <div class="row">
-    <h1>Posts Feed</h1>  
+    <div class="col-8">
+      <h1>Posts Feed</h1>  
+    </div>
+    <div class="col-4 text-end">
+      <a href="/databases/profile.php">My profile</a> 
+    </div>
     <hr/>
+  </div>
+  <div class="row">
     <div class="col-8">
         <?php foreach($list_of_posts as $post): ?>
           <div class="row-8">
