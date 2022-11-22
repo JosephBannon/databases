@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
 </head>
 
-<text> <?php echo $_SESSION["login_ID"]?> <text>
 <body>
 <div class="container">
   <div class="row">

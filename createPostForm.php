@@ -44,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <body>
 
-<text> <?php echo $_SESSION["login_ID"]?> <text>
 
 <div class="container">
   <?php $_SESSION["login_ID"]?>
