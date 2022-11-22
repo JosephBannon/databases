@@ -21,7 +21,7 @@ function userLikePost($username,$postId) {
         if ($statement1->rowCount() != 0)
         {     
             $doesUserLike = TRUE;
-            return;
+            echo "1";
         }
         $result1 = $statement1->fetch();
 
@@ -56,6 +56,31 @@ function userLikePost($username,$postId) {
             var_dump($result2);
         }
     }
+    else if($doesUserLike == TRUE)
+    {   
+        $query3 = "DELETE FROM `likes` WHERE username = :username AND postID = :postID";  
+
+        $result3 = 3;
+
+        try 
+        {
+            $statement3 = $db->prepare($query3);
+
+            $statement3->bindValue(':postID', $postId);
+            $statement3->bindValue(':username', $username);
+
+
+            $statement3->execute();
+            $result3 = $statement3->fetch();
+
+            $statement3->closeCursor();
+        } 
+        catch (PDOException $e)
+        {
+            var_dump($result3);
+        }
+    }
+
     return;
 }
 
@@ -86,7 +111,6 @@ function getAllLikes($username) {
         echo $e;
     }
     foreach($result1 as $like){
-        echo $like[1];
         array_push($postIDs,$like[1]);
     }
     

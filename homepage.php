@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     userLikePost($_SESSION["login_ID"], $_POST['likeButton']);
     $list_of_likes = getAllLikes($_SESSION["login_ID"]);
-    //$list_of_posts = getAllPosts();
   }
+
 }
 ?>
 
@@ -50,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 
 
-<text> <?php echo $_SESSION["login_ID"]?> <text>
 <body>
 <div class="container">
   <div class="row">
@@ -70,12 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <form name="likePostForm" action="homepage.php" method="post">   
               <div class="column right">
                 <?php if(!in_array($post[0], $list_of_likes)) : ?>
-                  <button class="button button-like" name="likeButton" type="submit"  value= <?php echo $post[0] ?>>
+                  <button class="btn btn-outline-danger" name="likeButton" type="submit"  value= <?php echo $post[0] ?>>
                     <i class="fa fa-heart"></i>
                     <span>Like</span>
                   </button>
                 <?php else : ?>
-                  <button class="button-liked" name="likedButton" type="submit"  value= <?php echo $post[0] ?>>
+                  <button class="btn btn-danger" name="likeButton" type="submit"  value= <?php echo $post[0] ?>>
                     <i class="fa fa-heart"></i>
                     <span>Like</span>
                   </button>
