@@ -21,7 +21,6 @@ function userLikePost($username,$postId) {
         if ($statement1->rowCount() != 0)
         {     
             $doesUserLike = TRUE;
-            echo "1";
         }
         $result1 = $statement1->fetch();
 
