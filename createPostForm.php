@@ -3,6 +3,7 @@ require("connect-db.php");
 require("create-post-db.php");
 require("post-db.php");
 include("session.php");
+include("base.php");
 
 
 $list_of_profs = getAllProfs();
@@ -37,8 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <meta name="description" content="include some description about your page">      
   <title>DB interfacing</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
 
 </head>
 
@@ -51,14 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <div class="row mb-3 mx-3">
     <div class="col-8">
 
-      Title:
+      <h4>Title:</h4>
       <input type="text" class="form-control" name="title" 
       />            
-      Content: <br>
-      <textarea name="content" rows="6" cols="89" wrap="soft"> </textarea>
+      <br>
+      <h4>Content:</h4> 
+      <textarea name="content" rows="5" cols="105" wrap="soft"> </textarea>
     </div> 
     <div class="col-4">
-      Professor:
+      <h5>Professor: </h5>
         <select class="form-select" name="prof">
           <option value="-1">No Professor Selected...</option>
           <?php foreach($list_of_profs as $prof): ?>
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <?php endforeach; ?>
         </select>
         <br>
-      Courses:
+      <h5>Courses: </h5>
         <select class="form-select" name="course">
           <option value="-1">No Course Selected...</option>
           <?php foreach($list_of_courses as $course): ?>
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <?php endforeach; ?>
         </select>
         <br>
-      Rating:
+      <h5>Rating:</h5>
         <select class="form-select" name="rating" aria-label="One">
           <option value=1>One</option>
           <option value=2>Two</option>
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
   </div>
   <div class="row mb-3 mx-3">
-    <input type="submit" value="CreatePost" name="btnAction" class="btn btn-primary" 
+    <input type="submit" value="Create Post" name="btnAction" class="btn btn-danger" 
           title="Create Post" />     
   </div>
 
@@ -98,5 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <br>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script> document.getElementById("form").classList.add('active'); </script>
+
 </body>
 </html>

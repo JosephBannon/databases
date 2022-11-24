@@ -2,6 +2,7 @@
 require("connect-db.php");
 require("post-db.php");
 include("session.php");
+include("base.php");
 
 $list_of_posts = getPostsByUserId($_SESSION["login_ID"]);
 $list_of_courses = getAllCourses();
@@ -46,9 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <div class="col-8">
       <h1>My Posts</h1>  
     </div>
-    <div class="col-4 text-end">
-      <a href="/databases/homepage.php">Back to home</a> 
-    </div>
+
     <hr/>
   </div>
   <div class="row">
@@ -65,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <div class="col-sm-8">
             </div>
             <div class="col-sm-2 text-end">
-              <a class="btn btn-secondary" href="/databases/editPostForm.php?id=<?= $post['postID'] ?>">Edit</a> 
+              <a class="btn btn-primary" href="/databases/editPostForm.php?id=<?= $post['postID'] ?>">Edit</a> 
             </div>
             <div class="col-sm-2">
               <form name="deleteForm" action="profile.php" method="post">
@@ -90,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <?php endforeach; ?>
         </select>
         <br>
-        <input type="submit" value="Filter" name="btnAction" class="btn btn-primary" title="Filter by course" />
+        <input type="submit" value="Filter" name="btnAction" class="btn btn-secondary" title="Filter by course" />
         <input type="submit" value="Clear filters" name="btnAction" class="btn btn-danger" title="Clear courese filter" />
       </form>
     </div>
@@ -101,5 +100,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <br>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script> document.getElementById("profile").classList.add('active'); </script>
+
 </body>
 </html>
