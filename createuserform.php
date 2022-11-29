@@ -8,7 +8,7 @@ require("create-user-db.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
   if (!empty($_POST['btnAction']) && $_POST['btnAction'] =='Create User') 
-  {
+  {  
     $result = addUser($_POST['username'], $_POST['password'], $_POST['firstName'], $_POST['lastName'], $_POST['major'], $_POST['gradYear']);  
     if ($result)
     {

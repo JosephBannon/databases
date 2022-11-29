@@ -2,13 +2,8 @@
 function LoginUser($username, $password)
 {
     global $db; 
-       
-    echo "<span class='msg'>Username and password do not match our record.</span> <br/>";
     $pwd = htmlspecialchars($password); #converts input to plaintext
     $hashedpwd = password_hash($pwd, PASSWORD_BCRYPT);
-    // $existingpass = "SELECT :password FROM User WHERE username=:username";
-    // $checkedpassword = password_verify($hashedpwd, $existingpass)
-
     $query = "SELECT * FROM User WHERE username=:username AND password=:password";
     try 
     {
