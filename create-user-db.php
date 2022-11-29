@@ -2,7 +2,8 @@
 function addUser($username, $password, $firstName, $lastName, $major, $gradYear)
 {
     global $db;
-    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $pwd = htmlspecialchars($password);
+    $hash = password_hash($pwd, PASSWORD_DEFAULT);
     $query = "INSERT INTO User VALUES (:username, :password, :firstName, :lastName, :major, :gradYear)";  
     $result = TRUE;
     try {
