@@ -2,14 +2,12 @@
 function LoginUser($username, $password)
 {
     global $db; 
-    $pwd = htmlspecialchars($password); #converts input to plaintext
-    $hashedpwd = password_hash($pwd, PASSWORD_BCRYPT);
-    $query = "SELECT * FROM User WHERE username=:username AND password=:password";
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $query = "SELECT * FROM User WHERE username=:username";
     try 
     {
         $statement = $db->prepare($query);
         $statement->bindValue(':username', $username);
-        $statement->bindValue(':password', $hashedpwd);
 
         $statement->execute();
         if ($statement->rowCount() == 0)
@@ -21,8 +19,15 @@ function LoginUser($username, $password)
         else
         {
             $result = $statement->fetch(); 
-            $result = array_merge($result, array("login" => TRUE));
-            $_SESSION['login_ID']=$result['username'];
+            if (password_verify($password, $result['password']) == true) {
+                $result = array_merge($result, array("login" => TRUE));
+                $_SESSION['login_ID']=$result['username'];
+            }
+            else {
+                $result = array(
+                    "login" => FALSE
+                );
+            }
         }
         $statement->closeCursor();
     } 
