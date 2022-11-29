@@ -29,25 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   }
   
 }
-// function authenticate()
-// {
-//    global $mainpage;
-//    if ($_SERVER['REQUEST_METHOD'] == 'POST')
-//    {
-//       $pwd = htmlspecialchars($_POST['password']); #converts input to plaintext
-//       $hashedpwd = password_hash($pwd, PASSWORD_BCRYPT)
-//       $existingpass = "SELECT :password FROM User WHERE username=:username";
-//       // if (password_verify($pwd, $hash))
-//       if (password_verify($hashedpwd, ))
-//       {
-//          header("Location: ".$mainpage);
-//       }
-//       else
-//          echo "<span class='msg'>Username and password do not match our record.</span> <br/>";
-//    }	
-// }
+
 $mainpage = "homepage.php";   
-// authenticate();
+
 
 ?>
 

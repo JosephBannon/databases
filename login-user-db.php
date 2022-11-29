@@ -15,6 +15,7 @@ function LoginUser($username, $password)
             $result = array(
                 "login" => FALSE
             );
+            echo "Username and password have no match in our records.";
         }
         else
         {
@@ -27,6 +28,7 @@ function LoginUser($username, $password)
                 $result = array(
                     "login" => FALSE
                 );
+                echo "Username and password have no match in our records.";
             }
         }
         $statement->closeCursor();
