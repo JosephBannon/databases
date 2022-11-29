@@ -2,12 +2,13 @@
 function addUser($username, $password, $firstName, $lastName, $major, $gradYear)
 {
     global $db;
+    // $hash = password_hash($password, PASSWORD_BCRYPT);
     $query = "INSERT INTO User VALUES (:username, :password, :firstName, :lastName, :major, :gradYear)";  
     $result = TRUE;
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':username', $username);
-        $statement->bindValue(':password', $password);
+        $statement->bindValue(':password', $password);#$hash);
         $statement->bindValue(':firstName', $firstName);
         $statement->bindValue(':lastName', $lastName);
         $statement->bindValue(':major', $major);
