@@ -27,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     header('Location: /databases/createuserform.php');
   }
+  else
+    echo "<span class='msg'>Username and password do not match our record.</span> <br/>";
   
 }
 // function authenticate()
