@@ -2,12 +2,12 @@
 function LoginUser($username, $password)
 {
     global $db; 
-    $query = "SELECT * FROM User WHERE username=:username AND password=:password";
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $query = "SELECT * FROM User WHERE username=:username";
     try 
     {
         $statement = $db->prepare($query);
         $statement->bindValue(':username', $username);
-        $statement->bindValue(':password', $password);
 
         $statement->execute();
         if ($statement->rowCount() == 0)
@@ -15,12 +15,21 @@ function LoginUser($username, $password)
             $result = array(
                 "login" => FALSE
             );
+            echo "Username and password have no match in our records.";
         }
         else
         {
             $result = $statement->fetch(); 
-            $result = array_merge($result, array("login" => TRUE));
-            $_SESSION['login_ID']=$result['username'];
+            if (password_verify($password, $result['password']) == true) {
+                $result = array_merge($result, array("login" => TRUE));
+                $_SESSION['login_ID']=$result['username'];
+            }
+            else {
+                $result = array(
+                    "login" => FALSE
+                );
+                echo "Username and password have no match in our records.";
+            }
         }
         $statement->closeCursor();
     } 

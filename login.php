@@ -8,8 +8,6 @@ session_start();
 ?>
 
 <?php
-$hash = password_hash("demo", PASSWORD_BCRYPT);
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
   if (!empty($_POST['btnAction']) && $_POST['btnAction'] =='Login') 
@@ -31,25 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   }
   
 }
-//checks if input characters, when turned into text and hashed, match the hashed password
-function authenticate()
-{
-   global $mainpage;
-   $hash = '$2y$10$7yMQ/KY5uHu1CwMBdptV5O12zpR9jJA4WcxAZxCT6zXIjyg8G4AWa';
-   
-   if ($_SERVER['REQUEST_METHOD'] == 'POST')
-   {
-      $pwd = htmlspecialchars($_POST['password']);      
-      if (password_verify($pwd, $hash))
-      {  
-         header("Location: ".$mainpage);
-      }
-      else       
-         echo "<span class='msg'>Username and password do not match our record.</span> <br/>";
-   }	
-}
+
 $mainpage = "homepage.php";   
-authenticate();
+
 
 ?>
 
